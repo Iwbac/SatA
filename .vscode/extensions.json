@@ -1,0 +1,15 @@
+{
+    "recommendations": [
+        "ms-dotnettools.vscode-dotnet-runtime",
+        "ms-dotnettools.csharp",
+        "kreativ-software.csharpextensions",
+        "streetsidesoftware.code-spell-checker",
+        "mhutchie.git-graph",
+        "oderwat.indent-rainbow",
+        "MS-CEINTL.vscode-language-pack-ja",
+        "Gruntfuggly.todo-tree",
+        "mosapride.zenkaku",
+        "IBM.output-colorizer",
+        "Gruntfuggly.todo-tree"
+    ]
+}
