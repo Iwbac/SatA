@@ -10,19 +10,49 @@ public class PlayerPresenter : MonoBehaviour
     public void Start()
     {
         player = GetComponent<Player>();
-        player.OnJumpKeyPressed.Skip(1).Subscribe(_ => Jump()).AddTo(this);
-        player.OnMoveKeyInput.Skip(1).Subscribe(_ => Move()).AddTo(this);
+        player.OnMoveMouse.Skip(1).Subscribe(_ => MoveViewpoint()).AddTo(this);
+        player.OnMove.Skip(1).Subscribe(_ => Move()).AddTo(this);
+        player.OnJump.Skip(1).Subscribe(_ => Jump()).AddTo(this);
+        player.OnAttack.Skip(1).Subscribe(_ => Attack()).AddTo(this);
+        player.OnSkillInvocation.Skip(1).Subscribe(_ => SkillInvocation()).AddTo(this);
+        player.OnUltimateAttack.Skip(1).Subscribe(_ => UltimateAttack()).AddTo(this);
+        player.OnPickUpItem.Skip(1).Subscribe(_ => PickUpItem()).AddTo(this);
     }
 
+    private void MoveViewpoint()
+    {
+        // 視点移動をここに実装
+        Debug.Log("MoveViewpoint: " + player.OnMoveMouse.Value);
+    }
     private void Jump()
     {
         // 攻撃をここに実装
-        Debug.Log("Jump: " + player.OnJumpKeyPressed.Value);
+        Debug.Log("Jump: " + player.OnJump.Value);
     }
 
     private void Move()
     {
         // 移動をここに実装
-        Debug.Log("Move: " + player.OnMoveKeyInput.Value);
+        Debug.Log("Move: " + player.OnMove.Value);
+    }
+
+    private void Attack()
+    {
+        // 攻撃をここに実装
+        Debug.Log("Attack: " + player.OnAttack.Value);
+    }
+    private void SkillInvocation()
+    {
+        // スキルをここに実装
+        Debug.Log("SkillInvocation: " + player.OnSkillInvocation.Value);
+    }
+    private void UltimateAttack()
+    {
+        // アルティメット攻撃をここに実装
+        Debug.Log("UltimateAttack: " + player.OnUltimateAttack.Value);
+    }
+    private void PickUpItem()
+    {
+        // アイテムを拾うをここに実装
     }
 }
