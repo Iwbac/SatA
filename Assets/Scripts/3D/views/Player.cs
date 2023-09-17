@@ -1,11 +1,14 @@
-using System;
 using UnityEngine;
 using UniRx;
 using UnityEngine.InputSystem;
+using System;
+using TMPro;
 
 public class Player : MonoBehaviour, IDisposable
 {
     [SerializeField] private InputActionAsset asset;
+    [SerializeField] private TextMeshProUGUI hpText;
+
     public IReadOnlyReactiveProperty<Vector2> OnMoveMouse => mouse;
     public IReadOnlyReactiveProperty<Vector2> OnMove => move;
     public IReadOnlyReactiveProperty<bool> OnJump => jump;
@@ -57,5 +60,10 @@ public class Player : MonoBehaviour, IDisposable
         skillInvocation?.Dispose();
         ultimateAttack?.Dispose();
         pickUpItem?.Dispose();
+    }
+
+    public void SetHp(int hp)
+    {
+        hpText.text = hp.ToString();
     }
 }

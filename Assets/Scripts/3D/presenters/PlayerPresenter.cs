@@ -5,9 +5,8 @@ public class PlayerPresenter : MonoBehaviour
 {
     private Player player;
     // private PlayerWeapon playerWeapon;
-    private PlayerModel playerModel = new();
 
-    public void Start()
+    private void Start()
     {
         player = GetComponent<Player>();
         player.OnMoveMouse.Skip(1).Subscribe(_ => MoveViewpoint()).AddTo(this);
@@ -19,23 +18,28 @@ public class PlayerPresenter : MonoBehaviour
         player.OnPickUpItem.Skip(1).Subscribe(_ => PickUpItem()).AddTo(this);
     }
 
+    public void TakeDamage(int damage)
+    {
+        var hp = PlayerModel.TakeDamage(damage);
+        player.SetHp(hp);
+        Debug.Log("TakeDamage: " + PlayerModel.Health);
+    }
+
     private void MoveViewpoint()
     {
         // 視点移動をここに実装
-        Debug.Log("MoveViewpoint: " + player.OnMoveMouse.Value);
+        //Debug.Log("MoveViewpoint: " + player.OnMoveMouse.Value);
     }
     private void Jump()
     {
         // 攻撃をここに実装
         Debug.Log("Jump: " + player.OnJump.Value);
     }
-
     private void Move()
     {
         // 移動をここに実装
         Debug.Log("Move: " + player.OnMove.Value);
     }
-
     private void Attack()
     {
         // 攻撃をここに実装
@@ -54,5 +58,6 @@ public class PlayerPresenter : MonoBehaviour
     private void PickUpItem()
     {
         // アイテムを拾うをここに実装
+        Debug.Log("PickUpItem: " + player.OnPickUpItem.Value);
     }
 }
