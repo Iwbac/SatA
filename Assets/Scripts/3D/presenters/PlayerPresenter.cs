@@ -23,11 +23,19 @@ public class PlayerPresenter : MonoBehaviour
         player.OnPickUpItem.Skip(1).Subscribe(_ => PickUpItem()).AddTo(this);
     }
 
-    public void TakeDamage(int damage)
+    /// <summary>
+    /// プレイヤーにダメージを与える
+    /// </summary>
+    /// <param name="damage">与えたいダメージ</param>
+    /// <returns>防具などでの軽減されたあとの実際にプレイヤーに与えたダメージ</returns>
+    public int TakeDamage(int damage)
     {
+        var beforeHp = PlayerModel.Health;
         var hp = PlayerModel.TakeDamage(damage);
         player.SetHp(hp);
         Debug.Log("TakeDamage: " + PlayerModel.Health);
+        var actuallyDealtDamage = hp - beforeHp; // 防具などでの軽減されたあとの実際にプレイヤーに与えたダメージ
+        return actuallyDealtDamage;
     }
 
     private void MoveViewpoint()
