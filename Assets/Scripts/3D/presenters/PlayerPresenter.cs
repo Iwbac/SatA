@@ -8,6 +8,11 @@ public class PlayerPresenter : MonoBehaviour
 
     private void Start()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         player = GetComponent<Player>();
         player.OnMoveMouse.Skip(1).Subscribe(_ => MoveViewpoint()).AddTo(this);
         player.OnMove.Skip(1).Subscribe(_ => Move()).AddTo(this);
